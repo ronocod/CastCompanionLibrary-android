@@ -42,7 +42,6 @@ public class VideoIntentReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        VideoCastManager castMgr = VideoCastManager.getInstance();
         String action = intent.getAction();
         if (action == null) {
             return;
@@ -58,7 +57,7 @@ public class VideoIntentReceiver extends BroadcastReceiver {
                 break;
             case VideoCastNotificationService.ACTION_STOP:
                 LOGD(TAG, "Calling stopApplication from intent");
-                castMgr.disconnect();
+                VideoCastManager.getInstance().disconnect();
                 break;
             case Intent.ACTION_MEDIA_BUTTON:
                 // this is used when we toggle playback from lockscreen in versions prior to
